@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>和田 佳久 | Portfolio</title>
+<meta name="description" content="和田佳久のポートフォリオ。設計・規程策定から実装・自動化まで自走できるGRCエンジニア。" />
+<meta property="og:title" content="和田 佳久 | Portfolio" />
+<meta property="og:description" content="設計・規程策定から実装・自動化まで自走できるGRCエンジニア" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://yo41sawada.github.io/avatar.png" />
+<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0f1115;
+    --bg-soft: #161a21;
+    --bg-card: #1a1f28;
+    --border: #2a313d;
+    --text: #e6e9ef;
+    --text-dim: #9aa4b2;
+    --text-faint: #6b7484;
+    --accent: #5b8cff;
+    --accent-soft: rgba(91, 140, 255, 0.12);
+    --radius: 14px;
+    --maxw: 760px;
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #fbfbfd;
+      --bg-soft: #f2f4f8;
+      --bg-card: #ffffff;
+      --border: #e3e7ee;
+      --text: #1a1f28;
+      --text-dim: #5a6373;
+      --text-faint: #8b94a3;
+      --accent: #2f6bff;
+      --accent-soft: rgba(47, 107, 255, 0.08);
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: "Inter", "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    line-height: 1.75;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+
+  /* Hero */
+  header.hero {
+    padding: 96px 0 56px;
+    text-align: left;
+  }
+  .hero-inner {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-direction: row-reverse;
+  }
+  .hero-text { flex: 1; min-width: 0; }
+  .avatar {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 0 0 4px var(--bg), 0 0 50px var(--accent-soft), 0 12px 40px rgba(0,0,0,0.35);
+  }
+  @media (max-width: 600px) {
+    .hero-inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+    .avatar { width: 132px; height: 132px; }
+  }
+  .hero .eyebrow {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 6vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+  .hero .romaji {
+    font-size: 1rem;
+    color: var(--text-faint);
+    font-family: "JetBrains Mono", monospace;
+    margin-bottom: 24px;
+  }
+  .hero .tagline {
+    font-size: clamp(1.05rem, 2.6vw, 1.3rem);
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 20px;
+  }
+  .hero .lead {
+    color: var(--text-dim);
+    max-width: 640px;
+    font-size: 1rem;
+  }
+  .badges { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+  .badge {
+    background: var(--accent-soft);
+    color: var(--accent);
+    border: 1px solid transparent;
+    padding: 6px 13px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight: 600;
+  }
+
+  /* Section */
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 28px; }
+  .sec-num {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+    padding-top: 4px;
+  }
+  .sec-title { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.01em; }
+  .sec-title .emoji { margin-right: 8px; }
+
+  /* Career timeline */
+  .job {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 14px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .job:hover { border-color: var(--accent); }
+  .job > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .job > summary::-webkit-details-marker { display: none; }
+  .job-co { font-weight: 700; font-size: 1.08rem; }
+  .job-role { color: var(--text-dim); font-size: 0.92rem; margin-top: 3px; }
+  .job-period {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .job .chev { color: var(--text-faint); transition: transform 0.2s; flex-shrink: 0; }
+  .job[open] .chev { transform: rotate(90deg); }
+  .job-body { padding: 0 22px 22px; }
+  .job-body .role-block { padding-top: 14px; border-top: 1px dashed var(--border); margin-top: 4px; }
+  .job-body .role-block:first-child { border-top: none; }
+  .role-name { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+  .role-sub { color: var(--text-faint); font-size: 0.82rem; margin-bottom: 10px; font-family: "JetBrains Mono", monospace; }
+  .job-body ul { list-style: none; }
+  .job-body li {
+    position: relative;
+    padding-left: 18px;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin-bottom: 6px;
+  }
+  .job-body li::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* Skills */
+  .skill-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip {
+    background: var(--bg-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  .skill-note { color: var(--text-faint); font-size: 0.85rem; margin-top: 16px; }
+
+  /* Generic list rows */
+  .rows { display: flex; flex-direction: column; }
+  .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .row:last-child { border-bottom: none; }
+  .row-main { font-weight: 500; }
+  .row-sub { color: var(--text-dim); font-size: 0.85rem; margin-top: 2px; }
+  .row-year {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--text-faint);
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Output cards */
+  .out-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+    margin-bottom: 12px;
+  }
+  .out-kind {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .out-title { font-weight: 600; }
+  .out-meta { color: var(--text-faint); font-size: 0.85rem; margin-top: 4px; }
+
+  /* Contact */
+  .contacts { display: flex; flex-wrap: wrap; gap: 12px; }
+  .contact-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 18px;
+    font-weight: 600;
+    color: var(--text);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); text-decoration: none; transform: translateY(-2px); }
+  .contact-link.soon { color: var(--text-faint); cursor: default; }
+  .contact-link.soon:hover { transform: none; border-color: var(--border); }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0 64px;
+    color: var(--text-faint);
+    font-size: 0.82rem;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-inner">
+      <img class="avatar" src="avatar.png" width="200" height="200" alt="和田 佳久のアバター" />
+      <div class="hero-text">
+        <div class="eyebrow">PORTFOLIO</div>
+        <h1>和田 佳久</h1>
+        <div class="romaji">Yoshihisa Wada</div>
+        <p class="tagline">設計・規程策定から実装・自動化まで自走できる GRC エンジニア</p>
+        <p class="lead">
+          金融系の SIer・クラウドインテグレータでエンジニア／PjM を経験後、Fintech スタートアップにて責任者として開発部門の立ち上げに貢献。
+          現職では一人目の正社員として、B2B SaaS 開発から、コーポレート IT 統制、ISMS・金融規制対応、生成AIガバナンスまで横断的に従事してきました。
+          ソフトウェアエンジニアのバックグラウンドを土台に、ガバナンス・リスク・コンプライアンス（GRC）を「机上の規程」で終わらせず、実装と自動化まで一気通貫で形にすることを強みとしています。
+        </p>
+        <div class="badges">
+          <span class="badge">GRC</span>
+          <span class="badge">情報セキュリティ</span>
+          <span class="badge">ISMS / ISO 27001</span>
+          <span class="badge">金融規制対応</span>
+          <span class="badge">B2B SaaS 開発</span>
+          <span class="badge">エンジニアリングマネジメント</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 経歴 -->
+  <section id="career">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title"><span class="emoji">💼</span>経歴</h2>
+    </div>
+
+    <details class="job" open>
+      <summary>
+        <div>
+          <div class="job-co">Nstock 株式会社</div>
+          <div class="job-role">株式報酬 SaaS 事業部・セカンダリ事業部・システム統括部</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span class="job-period">2022.04 –<br>在職中</span>
+          <span class="chev">›</span>
+        </div>
+      </summary>
+      <div class="job-body">
+        <div class="role-block">
+          <div class="role-name">セカンダリ事業部 エンジニア ／ システム統括部 部長</div>
+          <div class="role-sub">2023.11 – 継続中</div>
+          <ul>
+            <li>国内非上場企業向け株式売買取引所の開発</li>
+            <li>上記に伴う IT ガバナンス態勢の構築・運営</li>
+            <li>各種コーポレート IT 業務</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <div class="role-name">株式報酬 SaaS 事業部 エンジニア</div>
+          <div class="role-sub">2022.04 – 2023.12</div>
+          <ul>
+            <li>株式報酬 SaaS の開発</li>
+            <li>エンジニア組織・文化作り（採用を含む）</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <div class="role-name">立ち上げ実績</div>
+          <ul>
+            <li>金融商品取引業の開業準備に伴うシステムリスク統括・情報セキュリティ・金融規制対応をゼロから立ち上げ</li>
+            <li>ISMS（ISO/IEC 27001）の取得・運用、ITGC / ITAC の整備</li>
+            <li>金商法・FISC 安全対策基準・個人情報保護法（金融分野ガイドライン）対応</li>
+            <li>生成AI利用ガバナンスの策定・運用</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="job">
+      <summary>
+        <div>
+          <div class="job-co">株式会社インフキュリオン</div>
+          <div class="job-role">プロダクト開発部・コーポレート IT 部</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span class="job-period">2018.10 –<br>2022.03</span>
+          <span class="chev">›</span>
+        </div>
+      </summary>
+      <div class="job-body">
+        <div class="role-block">
+          <div class="role-name">コーポレート IT 部 部長</div>
+          <div class="role-sub">2020.08 – 2022.03 ／ 従業員数百名規模・子会社含む統括</div>
+          <ul>
+            <li>コーポレート IT 部の前身となるコーポレートエンジニアチームの立ち上げ</li>
+            <li>ロードマップ・ミッション・目標の策定、予算／年間計画の策定・予実管理</li>
+            <li>メンバーマネジメント（〜6名）</li>
+            <li>SaaS の選定・導入（Salesforce / サイバーリーズン / Slack / Backlog / Seculio / Sansan 他）</li>
+            <li>ISMS の拡大における管理策対応、各種ポリシー・ガイドラインの策定・浸透</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <div class="role-name">プロダクト・サービス開発部 部長 / CTO</div>
+          <div class="role-sub">2018.10 – 2021.03 ／ 開発部門責任者・CTO</div>
+          <ul>
+            <li>自社決済プラットフォームの堅牢なウェブアプリ開発、業務設計・システムアーキテクト（Java &amp; Azure、年間売上数億〜10億円超に貢献）</li>
+            <li>エンジニア組織・文化作り（採用・育成）、制度設計（業務委託含め配下数十名）</li>
+            <li>プロジェクトマネジメント（提案・プリセールス、外注・ベンダ選定・契約手続き、社内フロー確立）や各種標準化</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="job">
+      <summary>
+        <div>
+          <div class="job-co">株式会社フレクト</div>
+          <div class="job-role">クラウドインテグレーション事業部</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span class="job-period">2015.06 –<br>2018.10</span>
+          <span class="chev">›</span>
+        </div>
+      </summary>
+      <div class="job-body">
+        <div class="role-block">
+          <div class="role-name">プロジェクトマネージャ ／ マネージャ</div>
+          <div class="role-sub">2015.06 – 2018.10</div>
+          <ul>
+            <li>Heroku / Salesforce を用いたウェブアプリ開発、AI・IoT 等の新規技術を用いたソリューション構築のマネジメント・アーキテクト</li>
+            <li>CRM の構築・保守・運用（Salesforce）</li>
+            <li>自社 MaaS を用いた動態管理ソリューションの構築・保守・運用（Salesforce）</li>
+            <li>画像認識 AI を用いた品質判定サービスのプロトタイプ製作からプロダクション化推進（Salesforce）</li>
+            <li>各工程（要件定義〜リリース）の推進・PjM・アーキテクト、メンバーマネジメント（〜4名）、年間1億円規模の売上推進</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+
+    <details class="job">
+      <summary>
+        <div>
+          <div class="job-co">シンプレクス株式会社</div>
+          <div class="job-role">金融フロンティアグループ</div>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start;">
+          <span class="job-period">2009.04 –<br>2015.05</span>
+          <span class="chev">›</span>
+        </div>
+      </summary>
+      <div class="job-body">
+        <div class="role-block">
+          <div class="role-name">エンジニア ／ プロジェクトリーダー</div>
+          <div class="role-sub">個人投資家向け FX・生命保険新契約申込システムの開発</div>
+          <ul>
+            <li>金融機関向け各種ウェブアプリケーションの保守・運用</li>
+            <li>チャートアプリケーションの追加機能開発（Java）</li>
+            <li>帳票出力ウェブサービスの新規開発（Java）</li>
+            <li>各工程（要件定義・設計・開発・テスト・移行・リリース）の推進・プロジェクトリーダー</li>
+          </ul>
+        </div>
+      </div>
+    </details>
+  </section>
+
+  <!-- 02 スキル -->
+  <section id="skills">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title"><span class="emoji">🛠️</span>スキル</h2>
+    </div>
+    <div class="skill-grid">
+      <span class="chip">Java (Spring)</span>
+      <span class="chip">TypeScript</span>
+      <span class="chip">React</span>
+      <span class="chip">Amazon Web Services</span>
+      <span class="chip">Microsoft Azure</span>
+      <span class="chip">Heroku</span>
+      <span class="chip">Salesforce</span>
+      <span class="chip">Google Workspace</span>
+      <span class="chip">Slack</span>
+      <span class="chip">Notion</span>
+    </div>
+    <p class="skill-note">＋ ISMS 構築・運用 / ITGC・ITAC / 金融規制対応（金商法・FISC・個人情報保護法）/ 生成AIガバナンス / エンジニアリングマネジメント</p>
+  </section>
+
+  <!-- 03 資格・語学 -->
+  <section id="certs">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title"><span class="emoji">📜</span>資格・語学</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div><div class="row-main">情報処理技術者（情報セキュリティスペシャリスト）</div></div>
+        <span class="row-year">2021</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">情報処理技術者（応用情報技術者）</div></div>
+        <span class="row-year">2010</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">個人情報保護士</div></div>
+        <span class="row-year">2025</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">TOEIC 735 点</div><div class="row-sub">英語（ビジネス会話）</div></div>
+        <span class="row-year">2017</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">普通自動車第一種運転免許</div></div>
+        <span class="row-year">2004</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 学歴 -->
+  <section id="education">
+    <div class="sec-head">
+      <span class="sec-num">04</span>
+      <h2 class="sec-title"><span class="emoji">🎓</span>学歴</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div><div class="row-main">大阪府立大学大学院 工学研究科 電気・情報系専攻</div><div class="row-sub">修了</div></div>
+        <span class="row-year">2009.03</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">大阪府立大学 工学部 経営工学科</div><div class="row-sub">卒業</div></div>
+        <span class="row-year">2007.03</span>
+      </div>
+      <div class="row">
+        <div><div class="row-main">福井県立武生高等学校 普通科</div><div class="row-sub">卒業</div></div>
+        <span class="row-year">2003.03</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 表彰 -->
+  <section id="awards">
+    <div class="sec-head">
+      <span class="sec-num">05</span>
+      <h2 class="sec-title"><span class="emoji">🏆</span>表彰</h2>
+    </div>
+    <div class="rows">
+      <div class="row">
+        <div>
+          <div class="row-main">大阪府立大学 白鷺賞</div>
+          <div class="row-sub">工学部経営工学科を優秀な成績で卒業したことに対する学長表彰</div>
+        </div>
+        <span class="row-year">2007</span>
+      </div>
+      <div class="row">
+        <div>
+          <div class="row-main">SPSS Open House 2006 研究奨励賞</div>
+          <div class="row-sub">オフショアソフトウェア開発の成功要因に関する研究。共分散構造分析など統計解析手法を用いたデータ分析結果を報告し受賞</div>
+        </div>
+        <span class="row-year">2006</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 アウトプット -->
+  <section id="output">
+    <div class="sec-head">
+      <span class="sec-num">06</span>
+      <h2 class="sec-title"><span class="emoji">📣</span>登壇・執筆</h2>
+    </div>
+    <div class="out-card">
+      <div class="out-kind">Speaking</div>
+      <div class="out-title">認証・認可基盤に Keycloak を使って開発生産性を上げた話</div>
+      <div class="out-meta">JJUG CCC 2020 Fall</div>
+    </div>
+    <div class="out-card">
+      <div class="out-kind">Speaking</div>
+      <div class="out-title">新卒エンジニアの研修を担当した元 CTO が推薦する記事・書籍</div>
+      <div class="out-meta">July Tech Festa 2021</div>
+    </div>
+    <div class="out-card">
+      <div class="out-kind">Book</div>
+      <div class="out-title">Microsoft Azure Technology 1ヶ月でクラウドエンジニアになる本</div>
+      <div class="out-meta">共著</div>
+    </div>
+  </section>
+
+  <!-- 07 Contact -->
+  <section id="contact">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
+      <h2 class="sec-title"><span class="emoji">🔗</span>Contact</h2>
+    </div>
+    <div class="contacts">
+      <a class="contact-link" href="https://github.com/yo41sawada" target="_blank" rel="noopener">
+        <span>GitHub</span>
+      </a>
+      <span class="contact-link soon">X / SNS（準備中）</span>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    © 2026 Yoshihisa Wada — Built with plain HTML/CSS, hosted on GitHub Pages.
+  </div>
+</footer>
+
+</body>
+</html>
