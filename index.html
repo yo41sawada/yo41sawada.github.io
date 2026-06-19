@@ -236,6 +236,71 @@
   .out-title { font-weight: 600; }
   .out-meta { color: var(--text-faint); font-size: 0.85rem; margin-top: 4px; }
 
+  /* About / persona */
+  .persona-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .persona-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .persona-label {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .persona-value { font-weight: 700; font-size: 1.35rem; line-height: 1.25; }
+  .persona-sub { color: var(--text-dim); font-size: 0.88rem; margin-top: 6px; }
+  .sub-head {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-faint);
+    margin: 26px 0 12px;
+  }
+  .sf-list { list-style: none; }
+  .sf-list li {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.95rem;
+  }
+  .sf-list li:last-child { border-bottom: none; }
+  .sf-rank {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    min-width: 24px;
+    flex-shrink: 0;
+  }
+  .sf-name { font-weight: 600; min-width: 84px; flex-shrink: 0; }
+  .sf-desc { color: var(--text-dim); font-size: 0.9rem; }
+  .interest-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .interest {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+  }
+  .interest .ico { font-size: 1.5rem; line-height: 1; }
+  .interest .name { font-weight: 600; margin-top: 8px; }
+  .interest .note { color: var(--text-dim); font-size: 0.88rem; margin-top: 4px; }
+
   /* Contact */
   .contacts { display: flex; flex-wrap: wrap; gap: 12px; }
   .contact-link {
@@ -337,6 +402,16 @@
             <li>ISMS（ISO/IEC 27001）の取得・運用、ITGC / ITAC の整備</li>
             <li>金商法・FISC 安全対策基準・個人情報保護法（金融分野ガイドライン）対応</li>
             <li>生成AI利用ガバナンスの策定・運用</li>
+          </ul>
+        </div>
+        <div class="role-block">
+          <div class="role-name">メディア掲載・出演</div>
+          <ul>
+            <li><a href="https://nstock.co.jp/blog/wadayoshi_interview" target="_blank" rel="noopener">Nstock Blog — 正社員第一号 / エンジニア第一号としてのインタビュー</a></li>
+            <li><a href="https://open.spotify.com/episode/3MJoj4RajM5PakjibIV5CH" target="_blank" rel="noopener">Podcast — FinGATE KAYABA / BLOOM 移転（レイアウト検討・ネットワーク設計）</a></li>
+            <li><a href="https://open.spotify.com/episode/2R6lg9UZg3PSoMSV1wlZqz" target="_blank" rel="noopener">Podcast — SOPS の ISMS 取得（ISMS 事務局として）</a></li>
+            <li><a href="https://open.spotify.com/episode/1A3v35IqfrfCjgvSKGshWb" target="_blank" rel="noopener">Podcast 出演 #1</a></li>
+            <li><a href="https://open.spotify.com/episode/2VNM4iEq60MQxsVXw8YZZH" target="_blank" rel="noopener">Podcast 出演 #2</a></li>
           </ul>
         </div>
       </div>
@@ -526,10 +601,61 @@
     </div>
   </section>
 
-  <!-- 06 アウトプット -->
-  <section id="output">
+  <!-- 06 About Me -->
+  <section id="about">
     <div class="sec-head">
       <span class="sec-num">06</span>
+      <h2 class="sec-title"><span class="emoji">👤</span>About Me</h2>
+    </div>
+
+    <div class="persona-grid">
+      <div class="persona-card">
+        <div class="persona-label">MBTI</div>
+        <div class="persona-value">ISFJ</div>
+        <div class="persona-sub">擁護者タイプ。観察と段取りで人と組織を支えるのが性に合う</div>
+      </div>
+      <div class="persona-card">
+        <div class="persona-label">Strengths Finder</div>
+        <div class="persona-value">実行力タイプ</div>
+        <div class="persona-sub">通称「やりきりボーイ」。決めたら手を止めずに前に進めるのが得意</div>
+      </div>
+    </div>
+
+    <div class="persona-card">
+      <div class="persona-label">Top 5 Strengths</div>
+      <ol class="sf-list">
+        <li><span class="sf-rank">01</span><span class="sf-name">自我</span><span class="sf-desc">自分にしか出せない貢献を意識する</span></li>
+        <li><span class="sf-rank">02</span><span class="sf-name">調和性</span><span class="sf-desc">チームの納得と合意を優先する</span></li>
+        <li><span class="sf-rank">03</span><span class="sf-name">目標志向</span><span class="sf-desc">目的から逆算してやることを絞る</span></li>
+        <li><span class="sf-rank">04</span><span class="sf-name">個別化</span><span class="sf-desc">一人ひとりの強みや事情を見極める</span></li>
+        <li><span class="sf-rank">05</span><span class="sf-name">慎重さ</span><span class="sf-desc">リスクを洗い出してから動く</span></li>
+      </ol>
+    </div>
+
+    <div class="sub-head">好きなこと</div>
+    <div class="interest-grid">
+      <div class="interest">
+        <div class="ico">🏃</div>
+        <div class="name">ランニング</div>
+        <div class="note">フルマラソン PB <strong>3:27:42</strong>（姫路城マラソン 2025）</div>
+      </div>
+      <div class="interest">
+        <div class="ico">🏎️</div>
+        <div class="name">モータースポーツ</div>
+        <div class="note">SuperGT / WRC / D1 / カート。国内 A 級ライセンス保有、スバリスト</div>
+      </div>
+      <div class="interest">
+        <div class="ico">⚽</div>
+        <div class="name">フットサル</div>
+        <div class="note">体を動かしてリフレッシュする時間</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 アウトプット -->
+  <section id="output">
+    <div class="sec-head">
+      <span class="sec-num">07</span>
       <h2 class="sec-title"><span class="emoji">📣</span>登壇・執筆</h2>
     </div>
     <div class="out-card">
@@ -549,17 +675,25 @@
     </div>
   </section>
 
-  <!-- 07 Contact -->
+  <!-- 08 Contact -->
   <section id="contact">
     <div class="sec-head">
-      <span class="sec-num">07</span>
+      <span class="sec-num">08</span>
       <h2 class="sec-title"><span class="emoji">🔗</span>Contact</h2>
     </div>
     <div class="contacts">
       <a class="contact-link" href="https://github.com/yo41sawada" target="_blank" rel="noopener">
         <span>GitHub</span>
       </a>
-      <span class="contact-link soon">X / SNS（準備中）</span>
+      <a class="contact-link" href="https://twitter.com/yo41sawada" target="_blank" rel="noopener">
+        <span>X (Twitter)</span>
+      </a>
+      <a class="contact-link" href="https://www.facebook.com/yoshihisa.wada.39/" target="_blank" rel="noopener">
+        <span>Facebook</span>
+      </a>
+      <a class="contact-link" href="https://youtrust.jp/users/826ffe671b85b7e21fe449b312ff0415" target="_blank" rel="noopener">
+        <span>YOUTRUST</span>
+      </a>
     </div>
   </section>
 
